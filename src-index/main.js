@@ -1,19 +1,20 @@
 'use strict'
-var AWS = require('aws-sdk');
 
-exports.handler = function(event, context, callback) {
 
-  const environment = process.env.TF_ENVIRONMENT;
-  const bucket = process.env.TF_BUCKET;
-  const url = `https://${process.env.TF_API_URL}`;
-  const sha = event.sha;
+process.stdin.resume();
+process.stdin.setEncoding('utf8');
+process.stdin.on('data', function(shain) {
 
-  const index = `<!doctype html>
+  const sha = shain.trim();
+  const environment = process.env.TF_ENVIRONMENT || "test";
+  const url = `https://${process.env.TF_API_URL || "cloudfront-url" }` ;
+
+   process.stdout.write(`<!doctype html>
   <html>
     <head>
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <title>Immutable webapp</title>
+      <title>Immutable webapp starterpack</title>
       <meta name="description" content="Immutable webapp.">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
@@ -29,23 +30,12 @@ exports.handler = function(event, context, callback) {
 
          <!-- application binding -->
          <app-root></app-root>
-         <h3>Deployed at ${new Date()}</h3>
+         <h3>Created at ${new Date()}</h3>
          <!-- fully-qualified static assets -->
          <script src="${url}/assets/${sha}/main.js" type="text/javascript"></script>
 
 
      </body>
-  </html>`
+  </html>`)
 
-  var s3 = new AWS.S3();
-      var params = {
-          Bucket : bucket,
-          Key : 'index.html',
-          Body : index,
-          CacheControl: 'no-store',
-          ContentType: "text/html",
-          ACL: "public-read"
-      }
-
-  return s3.putObject(params).promise();
-}
+});
