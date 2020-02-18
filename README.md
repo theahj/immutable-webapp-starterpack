@@ -46,7 +46,7 @@ Generelt
 
 * Bygg assets manuelt (`npm run build`) og last opp fila i asset-bucketen på under navnet git-sha/main.js. .
  - `git rev-parse HEAD` gir deg siste commit på din branch
- - key er `assets/<git-sha>/main.js`
+ - bruk følgende key `assets/<git-sha>/main.js`
 * Bygg index.html (`cd src-index; sh index.sh`) og kopier index.html til host-bucket.
 
 Om du nå går på `<bucket_domain_name>/index.html` bør du se `Created at <tidspunkt du kjørte index.sh>`. Henting av assets feiler pga feil url.
@@ -57,6 +57,8 @@ AWS CloudFront er Amazon sin CDN-provider, se [terraform-docs](https://www.terra
 
 *Vi tar en felles gjennomgang av CloudFront - si i fra når du er kommet hit!*
 
+Test ut endringer i `App.jsx` og deploy ny versjon av assets og index for å sjekke caching og endringer.
+- OBS: Nå kan du bruke `domain_name` outputen fra cloudfront som erstatning for `my-url` i `src-index/main.js` 
 
 ### Autodeploy av assets fra Github Actions
 
