@@ -1,0 +1,28 @@
+name: Zip js from src-lambda on tag 'lambda-x.y.z'
+
+on:
+  push:
+    tags:
+      - lambda-*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Zip src-lambda-folder
+      run: zip -rj src.zip src-lambda/
+    - name: Get build version from tag
+      id: release
+      run: echo ::set-output name=tag::${GITHUB_REF:17}
+    - uses: actions/upload-artifact@v1
+      with:
+        name: src-${{ steps.release.outputs.tag }}
+        path: src.zip
