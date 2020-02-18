@@ -1,7 +1,7 @@
 node_modules/
 build/
 .DS_Store
-
+src-index/index.html
 
 # Terraform
 **/.terraform/*

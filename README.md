@@ -50,10 +50,15 @@ Om du nå går på `<bucket_domain_name>/index.html` bør du se `Created at <tid
 ### CDN
 
 
-- Deploy til assets automatisk på push (`.github/workflows/nodejs.yml`)
- - Krever opprettelse av ny bruker, se `ci-user.tf`
+### Autodeploy av assets
 
+- Deploy til assets automatisk på push (`.github/workflows/nodejs.yml`)
+- Krever opprettelse av ny bruker, se `ci-user.tf`
+
+### Autodeploy av host
 - Deploy automatisk til testmiljø på push
+- sha kan hentes ved environment variabelen GITHUB_SHA 
+
 
 
 
