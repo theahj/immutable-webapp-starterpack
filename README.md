@@ -1,6 +1,8 @@
 # Immutable-webapp
 En implementasjon av stukturen fra https://immutablewebapps.org/
 
+
+
 ## Gode sky-prinsipper
 * Infrastruktur som kode
 * Deploy av kode og infrastruktur skal skje fra ci
