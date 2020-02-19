@@ -15,7 +15,7 @@ En implementasjon av stukturen fra https://immutablewebapps.org/
 
 - Opprett en AWS-konto (OBS: du legger inn betalingskort, så vær klar over at du betaler for enkelte tjenester)
 - jeg har valgt region Stockholm / eu-north-1
-- Opprett en IAM-bruker med navn: `terraform` med `Programmatic access` og `Attach existing policies directly` med policy name  `AdministratorAccess` - skip tags, men last ned access-key og secret.
+- Opprett en IAM-bruker med navn: `terraform` med `Programmatic access` og `Attach existing policies directly` med policy name  `AdministratorAccess` - legg til tagg "system=terraform" og last ned access-key og secret.
 - Installer aws-cli'et på maskinen din, kjør `aws configure`.
 sjekk `aws iam get-user` for å se at du er logget inn som en bruker
 
@@ -58,13 +58,13 @@ AWS CloudFront er Amazon sin CDN-provider, se [terraform-docs](https://www.terra
 *Vi tar en felles gjennomgang av CloudFront - si i fra når du er kommet hit!*
 
 Test ut endringer i `App.jsx` og deploy ny versjon av assets og index for å sjekke caching og endringer.
-- OBS: Nå kan du bruke `domain_name` outputen fra cloudfront som erstatning for `my-url` i `src-index/main.js` 
+- OBS: Nå kan du bruke `domain_name` outputen fra cloudfront som erstatning for `my-url` i `src-index/main.js`
 
 ### Autodeploy av assets fra Github Actions
 
 - Deploy til assets automatisk på push, se (`.github/workflows/nodejs.yml`)
 - sha kan hentes ved environment variabelen GITHUB_SHA
-- Krever opprettelse av ny bruker, se `ci-user.tf`
+- Krever opprettelse av ny bruker , se `ci-user.tf`
 
 ### Autodeploy til host
 - Utvid push (`.github/workflows/nodejs.yml`) til også å lage og laste opp index.html
@@ -91,7 +91,7 @@ navn i terraform   = se link
 Tags
 managed_by = terraform
 environment = ci/dev/test/prod/common
-type/system = tilhørighet
+system = tilhørighet
 
 
 I alle moduler:
