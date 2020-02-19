@@ -7,7 +7,7 @@ process.stdin.on('data', function(shain) {
 
   const sha = shain.trim();
   const environment = process.env.TF_ENVIRONMENT || "test";
-  const url = `https://${process.env.TF_API_URL || "my-url" }` ;
+  const url = `https://${process.env.TF_API_URL || "tf-assets-thea.s3.eu-north-1.amazonaws.com" }` ;
 
    process.stdout.write(`<!doctype html>
   <html>
