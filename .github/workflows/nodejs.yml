@@ -41,4 +41,5 @@ jobs:
 
     - name: Upload assets to assets-bucket using the AWS cli
       run: >-
-        aws s3 cp build-${{github.sha}} s3://42ec18f43c58491cd2d934ea1836a0119af40271/assets/${{github.sha}}/main.js --acl public-read --cache-control public,max-age=31536000,immutable
+        echo "Continue from here with the AWS-cli (aws s3) to upload assets to bucket"
+        aws s3 cp build-${{github.sha}} s3://tf-assets-thea/assets/${{github.sha}}/main.js --acl public-read --cache-control public,max-age=31536000,immutable
